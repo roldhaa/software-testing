@@ -103,5 +103,24 @@ test.describe('Homepage', () => {
     await expect(authArea.locator('text=Login')).toBeVisible();
     await expect(authArea.locator('text=Sign Up')).toBeVisible();
   });
+  test('should filter produts when searching', async ({ page }) => {
+    const searchInput = page.locator('#searchInput');
+    const searchBtn = page.locator('#searchBtn');
+    
+    await expect(searchInput).toBeVisible();
+    await expect(searchBtn).toBeVisible();
+    
+    // Type in search bar
+    await searchInput.fill('Keyboard');
+    await searchBtn.click();
+
+    // Wait for filtered results
+    await page.waitForTimeout(500);
+    
+    // Should show only keyboard product
+    const productCards = page.locator('.product-card');
+    await expect(productCards).toHaveCount(1);
+  });
+
 
 });

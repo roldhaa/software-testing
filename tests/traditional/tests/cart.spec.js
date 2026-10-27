@@ -147,5 +147,6 @@ test.describe('Shopping Cart', () => {
     const startShoppingBtn = emptyCart.locator('text=Start Shopping');
     await expect(startShoppingBtn).toBeVisible();
   });
+  
 
 });
